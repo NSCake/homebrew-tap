@@ -1,8 +1,8 @@
 class ReCli < Formula
   desc "Reverse engineering CLI wrapping IDA Pro and Hopper Disassembler"
   homepage "https://github.com/NSExceptional/re-cli"
-  url "https://github.com/NSExceptional/re-cli/archive/refs/tags/v0.3.2.tar.gz"
-  sha256 "d28eedc30bae81661dd19d700984d155b3bb4b282c8ecc2f30d354de98da6f61"
+  url "https://github.com/NSExceptional/re-cli/archive/refs/tags/v0.3.3.tar.gz"
+  sha256 "e3f5a60c4f73adf664ac9e35b1d2b4802fbcf162813c57d6423404c407b4b71b"
   license "MIT"
   head "https://github.com/NSExceptional/re-cli.git", branch: "main"
 
