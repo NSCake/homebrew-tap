@@ -9,12 +9,11 @@ class Sipa < Formula
   # sha256 "..."
 
   depends_on xcode: ["15.0", :build]
-  depends_on :macos
-  depends_on "libimobiledevice"
+  depends_on "ideviceinstaller"
   depends_on "ldid"
-
-  # Optional: `zsign` is only needed to sign with a raw .p12 (no Keychain identity).
-  # depends_on "zsign"
+  depends_on "libimobiledevice"
+  depends_on :macos # usbmux / lockdown / device discovery   # `install` shells out to this               # entitlements / signature inspection
+  depends_on "zsign" # signing with a raw/Sideloadly/Apple-ID .p12 identity
 
   def install
     system "swift", "build", "--disable-sandbox", "--configuration", "release"
@@ -29,8 +28,8 @@ class Sipa < Formula
       For iOS 17+, enable Developer Mode on the device:
         Settings → Privacy & Security → Developer Mode → on (then reboot)
 
-      To sign with a raw .p12 instead of a Keychain identity, also install zsign:
-        brew install zsign
+      Authenticate once, then installs run headlessly:
+        sipa login --apple-id you@example.com
     EOS
   end
 
