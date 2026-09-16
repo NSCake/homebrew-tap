@@ -32,19 +32,19 @@ class Ttrff < Formula
 
     # Launcher: point the tray at the installed toolset and at a user-writable copy of the mod
     # table (the libexec one is a read-only default; the tray seeds the user copy on first run).
-    (bin/"ttrff-tray").write <<~SH
+    (bin/"ttrff").write <<~SH
       #!/bin/bash
       export TTRFF_REPO="#{libexec}"
       export TTRMOD_MODSET="${TTRMOD_MODSET:-$HOME/Library/Application Support/ttrff/modset.json}"
       exec "#{libexec}/venv/bin/python" "#{libexec}/tray/ttrff_tray.py" "$@"
     SH
-    (bin/"ttrff-tray").chmod 0755
+    (bin/"ttrff").chmod 0755
   end
 
   def caveats
     <<~EOS
       Start the menu-bar app (it lives in the menu bar, no window):
-        ttrff-tray
+        ttrff
 
       Attaching to the hardened game engine needs root, so the injector is launched via
       `sudo -n` + the bundled signed runner. Passwordless sudo must be configured for it
@@ -58,6 +58,6 @@ class Ttrff < Formula
   end
 
   test do
-    assert_match "ttrff tray selftest", shell_output("#{bin}/ttrff-tray --selftest")
+    assert_match "ttrff tray selftest", shell_output("#{bin}/ttrff --selftest")
   end
 end
