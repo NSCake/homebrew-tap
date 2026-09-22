@@ -39,12 +39,26 @@ class Ttrff < Formula
       exec "#{libexec}/venv/bin/python" "#{libexec}/tray/ttrff_tray.py" "$@"
     SH
     (bin/"ttrff").chmod 0755
+
+    # A real .app bundle so the tray launches from Spotlight / Launchpad like any normal app
+    # (LSBackgroundOnly: menu-bar app, no Dock icon). The executable execs the bin launcher,
+    # so the .app and the `ttrff` command are the same app; the tray's single-instance guard
+    # makes launching it twice a no-op.
+    app_dir = (buildpath/"packaging"/"app")
+    (apps/"ttrff.app"/"Contents"/"MacOS").mkpath
+    (apps/"ttrff.app"/"Contents"/"MacOS"/"ttrff").write <<~SH
+      #!/bin/bash
+      exec "#{bin}/ttrff" "$@"
+    SH
+    (apps/"ttrff.app"/"Contents"/"MacOS"/"ttrff").chmod 0755
+    (apps/"ttrff.app"/"Contents"/"Info.plist").write (app_dir/"Info.plist").read
   end
 
   def caveats
     <<~EOS
       Start the menu-bar app (it lives in the menu bar, no window):
         ttrff
+      ...or launch "ttrff" from Spotlight (installed to ~/Applications).
 
       Attaching to the hardened game engine needs root, so the injector is launched via
       `sudo -n` + the bundled signed runner. Passwordless sudo must be configured for it
