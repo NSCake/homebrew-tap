@@ -1,7 +1,7 @@
 class CcCopilotProxy < Formula
   desc "Use Claude in VS Code Copilot on your Claude Code subscription (personal proxy)"
   homepage "https://github.com/NSExceptional/cc-copilot-proxy"
-  head "https://github.com/NSExceptional/cc-copilot-proxy.git", branch: "main"
+  head "https://github.com/NSExceptional/cc-copilot-proxy.git", branch: "legacy"
   license :cannot_represent
 
   depends_on "node"
