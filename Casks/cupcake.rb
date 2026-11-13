@@ -1,9 +1,9 @@
 cask "cupcake" do
-  version "1.1"
-  sha256 "a0d2cf620393cc6047bd7374bf3b853aafa76dcbb140417a9950b57cc633f972"
+  version "1.2"
+  sha256 "dc1cb738d8bac4a5e089865b1876943173f8c99792a2b7e40a1b87545f9414b2"
 
   # Private release asset: needs HOMEBREW_GITHUB_API_TOKEN (see ~/bash/github-token.sh).
-  url "https://api.github.com/repos/NSExceptional/Cupcake/releases/assets/743403059",
+  url "https://api.github.com/repos/NSExceptional/Cupcake/releases/assets/744243079",
       header: [
         "Authorization: Bearer #{ENV.fetch("HOMEBREW_GITHUB_API_TOKEN", "")}",
         "Accept: application/octet-stream",
